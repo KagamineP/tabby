@@ -21,9 +21,11 @@ import { NewLessonComponent } from './components/pages/new-lesson/new-lesson.com
 import { EditLessonComponent } from './components/pages/edit-lesson/edit-lesson.component';
 import { HoldDeleteDirective } from './directives/hold-delete.directive';
 import { NewTaskComponent } from './components/pages/new-task/new-task.component';
+import { SafeHtmlPipe } from './pipes/safe-html.pipe';
+import { EditTaskComponent } from './components/pages/edit-task/edit-task.component';
 
 @NgModule({
-  declarations: [AppComponent, SidebarComponent, SettingsComponent, TimetableComponent, TasksComponent, NewLessonComponent, EditLessonComponent, HoldDeleteDirective, NewTaskComponent],
+  declarations: [AppComponent, SidebarComponent, SettingsComponent, TimetableComponent, TasksComponent, NewLessonComponent, EditLessonComponent, HoldDeleteDirective, NewTaskComponent, SafeHtmlPipe, EditTaskComponent],
   imports: [
     BrowserModule,
     ReactiveFormsModule,

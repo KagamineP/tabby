@@ -1,15 +1,13 @@
-import { app, BrowserWindow, Menu, Tray, NativeImage, nativeImage } from 'electron';
+import { app, BrowserWindow, Menu, ipcMain, dialog } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 
 let win: BrowserWindow = null;
-let tray: Tray = null;
-let close: boolean = false;
 
 const args = process.argv.slice(1),
   serve = args.some(val => val === '--serve');
 
-function createWindow(): BrowserWindow {
+function createWindow(): void {
 
   win = new BrowserWindow({
     width: 1280,
@@ -38,38 +36,6 @@ function createWindow(): BrowserWindow {
       slashes: true
     }));
   }
-
-  tray = new Tray(nativeImage.createFromPath(path.join(__dirname, 'dist/favicon.ico')));
-  const contextMenu = Menu.buildFromTemplate([
-    {
-      label: 'Open',
-      type: 'normal',
-      click: function () {
-        win.show();
-      }
-    },
-    {
-      label: 'Exit',
-      type: 'normal',
-      click: function () {
-        close = true;
-        app.quit();
-      }
-    }
-  ]);
-  tray.setToolTip('Tabby');
-  tray.setContextMenu(contextMenu);
-
-  tray.on('double-click', () => {
-    win.show();
-  });
-
-  win.on('close', (event) => {
-    if (!close) event.preventDefault();
-    win.hide();
-  });
-
-  return win;
 }
 
 try {
@@ -88,3 +54,17 @@ try {
   });
 
 } catch (e) { }
+
+ipcMain.on('export', async (event, arg) => {
+  const result = await dialog.showOpenDialog({
+    properties: ['openDirectory', 'createDirectory']
+  });
+  event.reply('export-reply', result);
+});
+
+ipcMain.on('import', async (event, arg) => {
+  const result = await dialog.showOpenDialog({
+    properties: ['openFile']
+  });
+  event.reply('import-reply', result);
+});

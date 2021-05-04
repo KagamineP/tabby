@@ -5,7 +5,8 @@
     "settings": "Settings",
     "newLesson": "Add new lesson",
     "editLesson": "Edit lesson",
-    "newTask": "Add new task"
+    "newTask": "Add new task",
+    "editTask": "Edit task"
   },
   "SUBTITLE": {
     "timetable": "Here you can see your weekly schedule. Right click on the lessons to edit or delete them.",
@@ -22,6 +23,14 @@
       "theme": "Theme",
       "darkMode": "Dark mode",
       "mainColor": "Main color"
+    },
+    "DATA": {
+      "data": "Data",
+      "error": "An error has occured!",
+      "exportSuccess": "The data was successfully exported!",
+      "importSuccess": "The data was successfully imported!",
+      "export": "Export",
+      "import": "Import"
     }
   },
   "TIMETABLE": {
